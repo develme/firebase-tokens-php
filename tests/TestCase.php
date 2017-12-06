@@ -4,8 +4,9 @@ namespace Firebase\Auth\Token\Tests;
 
 use Lcobucci\JWT\Signature;
 use Lcobucci\JWT\Signer;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
-class TestCase extends \PHPUnit\Framework\TestCase
+final class TestCase extends PHPUnitTestCase
 {
     /**
      * @return Signer|\PHPUnit_Framework_MockObject_MockObject

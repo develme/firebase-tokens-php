@@ -30,15 +30,15 @@ final class Generator implements Domain\Generator
     private $signer;
 
     public function __construct(
-        string $clientEmail,
-        string $privateKey,
+        $clientEmail,
+        $privateKey,
         Signer $signer = null
     ) {
         $this->clientEmail = $clientEmail;
         $this->privateKey = $privateKey;
 
         $this->builder = $this->createBuilder();
-        $this->signer = $signer ?: new Sha256();
+        $this->signer = $signer ? $signer : new Sha256();
     }
 
     /**
@@ -52,7 +52,7 @@ final class Generator implements Domain\Generator
      *
      * @return Token
      */
-    public function createCustomToken($uid, array $claims = [], \DateTimeInterface $expiresAt = null): Token
+    public function createCustomToken($uid, array $claims = [], \DateTimeInterface $expiresAt = null)
     {
         if (count($claims)) {
             $this->builder->set('claims', $claims);
@@ -70,7 +70,7 @@ final class Generator implements Domain\Generator
             ->getToken();
     }
 
-    private function createBuilder(): Builder
+    private function createBuilder()
     {
         return (new Builder())
             ->setIssuer($this->clientEmail)

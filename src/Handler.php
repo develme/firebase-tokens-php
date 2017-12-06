@@ -17,18 +17,18 @@ final class Handler implements Domain\Generator, Domain\Verifier
      */
     private $verifier;
 
-    public function __construct(string $projectId, string $clientEmail, string $privateKey, KeyStore $keyStore = null)
+    public function __construct($projectId, $clientEmail, $privateKey, KeyStore $keyStore = null)
     {
         $this->generator = new Generator($clientEmail, $privateKey);
-        $this->verifier = new Verifier($projectId, $keyStore ?? new HttpKeyStore());
+        $this->verifier = new Verifier($projectId, $keyStore ? $keyStore : new HttpKeyStore());
     }
 
-    public function createCustomToken($uid, array $claims = [], \DateTimeInterface $expiresAt = null): Token
+    public function createCustomToken($uid, array $claims = [], \DateTimeInterface $expiresAt = null)
     {
         return $this->generator->createCustomToken($uid, $claims, $expiresAt);
     }
 
-    public function verifyIdToken($token): Token
+    public function verifyIdToken($token)
     {
         return $this->verifier->verifyIdToken($token);
     }
