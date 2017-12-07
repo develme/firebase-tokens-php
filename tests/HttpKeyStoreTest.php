@@ -34,10 +34,11 @@ class HttpKeyStoreTest extends TestCase
         $this->assertEquals($key, $this->store->get($keyId));
     }
 
+    /**
+     * @expectedException \OutOfBoundsException::class
+     */
     public function testGetNonExistingKey()
     {
-        $this->expectException(\OutOfBoundsException::class);
-
         $this->store->get('foo');
     }
 }

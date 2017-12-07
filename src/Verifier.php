@@ -29,14 +29,14 @@ final class Verifier implements Domain\Verifier
      */
     private $signer;
 
-    public function __construct(string $projectId, KeyStore $keys = null, Signer $signer = null)
+    public function __construct($projectId, KeyStore $keys = null, Signer $signer = null)
     {
         $this->projectId = $projectId;
-        $this->keys = $keys ?? new HttpKeyStore();
-        $this->signer = $signer ?? new Sha256();
+        $this->keys = !empty($keys) ? $keys : new HttpKeyStore();
+        $this->signer = !empty($signer) ? $signer : new Sha256();
     }
 
-    public function verifyIdToken($token): Token
+    public function verifyIdToken($token)
     {
         if (!($token instanceof Token)) {
             $token = (new Parser())->parse($token);
@@ -83,7 +83,7 @@ final class Verifier implements Domain\Verifier
         }
     }
 
-    private function getKey(Token $token): string
+    private function getKey(Token $token)
     {
         if (!$token->hasHeader('kid')) {
             throw new InvalidToken($token, 'The header "kid" is missing.');
@@ -98,7 +98,7 @@ final class Verifier implements Domain\Verifier
         }
     }
 
-    private function verifySignature(Token $token, string $key)
+    private function verifySignature(Token $token, $key)
     {
         try {
             $isVerified = $token->verify($this->signer, $key);
