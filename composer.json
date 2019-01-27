@@ -1,5 +1,5 @@
 {
-    "name": "develme/firebase-tokens",
+    "name": "develme/firebase-tokens-56",
     "description": "A library to work with Firebase tokens. Adjusted for 5.6",
     "type": "library",
     "keywords": ["firebase", "google", "token", "authentication", "auth", "php5"],
