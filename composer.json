@@ -1,18 +1,18 @@
 {
-    "name": "merqueo/firebase-tokens-5",
-    "description": "A library to work with Firebase tokens",
+    "name": "develme/firebase-tokens",
+    "description": "A library to work with Firebase tokens. Adjusted for 5.6",
     "type": "library",
-    "keywords": ["firebase", "google", "token", "authentication", "auth"],
-    "homepage": "https://github.com/alejandro-merqueo/firebase-tokens-php",
+    "keywords": ["firebase", "google", "token", "authentication", "auth", "php5"],
+    "homepage": "https://github.com/develme/firebase-tokens-php",
     "license": "MIT",
     "authors": [
         {
-            "name": "Alejandro Rivera",
-            "homepage": "https://github.com/alejandro-merqueo"
+            "name": "DevelMe",
+            "homepage": "https://github.com/develme"
         }
     ],
     "require": {
-        "php": "^5.0",
+        "php": "^5.6",
         "lcobucci/jwt": "^3.2",
         "fig/http-message-util": "^1.1",
         "guzzlehttp/guzzle": "^6.2.1"
